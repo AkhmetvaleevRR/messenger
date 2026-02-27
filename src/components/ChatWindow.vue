@@ -52,6 +52,7 @@
 import { ref, watch, nextTick, onMounted } from 'vue'
 import type { Chat } from '@/types'
 import { formatMessageTime, formatMessageDate } from '@/utils/messageUtils'
+import { formatText } from '@/utils/textFormatter'
 import ChatInput from './ChatInput.vue'
 
 interface Props {
@@ -93,14 +94,6 @@ const shouldShowDate = (index: number): boolean => {
   const prevDate = new Date(prevMsg.timestamp).toDateString()
   
   return currentDate !== prevDate
-}
-
-const formatText = (text: string): string => {
-  return text
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>') 
-    .replace(/~~(.*?)~~/g, '<s>$1</s>')
-    .replace(/\n/g, '<br>')
 }
 
 const handleSend = (text: string) => {

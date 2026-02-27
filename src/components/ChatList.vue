@@ -43,7 +43,7 @@ interface Props {
   currentChatId: number | null
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
 const emit = defineEmits<{
   selectChat: [chatId: number]
 }>()
