@@ -27,6 +27,7 @@
       <textarea
         ref="textarea"
         v-model="message"
+        name="message"
         class="chat-input__field"
         placeholder="Введите сообщение..."
         rows="1"
