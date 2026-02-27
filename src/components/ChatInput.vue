@@ -3,28 +3,29 @@
     <div class="chat-input__toolbar">
       <button
         class="chat-input__format-btn"
-        @click="applyFormat('**')"
         title="Жирный (Ctrl+B)"
+        @click="applyFormat('**')"
       >
         <strong>B</strong>
       </button>
       <button
         class="chat-input__format-btn"
-        @click="applyFormat('*')"
         title="Курсив (Ctrl+I)"
+        @click="applyFormat('*')"
       >
         <em>I</em>
       </button>
       <button
         class="chat-input__format-btn"
-        @click="applyFormat('~~')"
         title="Зачеркнутый"
+        @click="applyFormat('~~')"
       >
         <s>S</s>
       </button>
     </div>
     <div class="chat-input__row">
       <textarea
+        ref="textarea"
         v-model="message"
         class="chat-input__field"
         placeholder="Введите сообщение..."
@@ -34,8 +35,7 @@
         @keydown.ctrl.b.prevent="applyFormat('**')"
         @keydown.ctrl.i.prevent="applyFormat('*')"
         @input="adjustHeight"
-        ref="textarea"
-      ></textarea>
+      />
       <button
         class="chat-input__button"
         :disabled="!message.trim()"

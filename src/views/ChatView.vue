@@ -1,6 +1,9 @@
 <template>
   <div class="mobile-chat">
-    <div class="mobile-chat__back" @click="goBack">
+    <div 
+      class="mobile-chat__back" 
+      @click="goBack"
+    >
       <span>← Назад</span>
     </div>
     <div class="mobile-chat__content">

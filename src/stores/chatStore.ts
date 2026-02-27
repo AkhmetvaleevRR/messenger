@@ -10,6 +10,7 @@ export const useChatStore = defineStore('chat', () => {
   const chats = ref<Chat[]>([])
   const currentChatId = ref<number | null>(null)
   const isLoading = ref(false)
+  const error = ref<string | null>(null)
 
   const currentChat = computed(() => 
     chats.value.find(chat => chat.id === currentChatId.value)
@@ -17,6 +18,7 @@ export const useChatStore = defineStore('chat', () => {
 
   const initChats = async () => {
     isLoading.value = true
+    error.value = null
     try {
       const savedChats = loadFromStorage()
       
@@ -40,8 +42,9 @@ export const useChatStore = defineStore('chat', () => {
         })
         saveToStorage(chats.value)
       }, STATUS_CHANGE_INTERVAL)
-    } catch (error) {
-      console.error('Failed to initialize chats:', error)
+    } catch (err) {
+      error.value = err instanceof Error ? err.message : 'Не удалось загрузить чаты'
+      console.error('Failed to initialize chats:', err)
     } finally {
       isLoading.value = false
     }
@@ -96,6 +99,7 @@ export const useChatStore = defineStore('chat', () => {
     currentChatId,
     currentChat,
     isLoading,
+    error,
     initChats,
     selectChat,
     sendMessage

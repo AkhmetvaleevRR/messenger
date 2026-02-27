@@ -12,19 +12,30 @@
         @click="selectChat(chat.id)"
       >
         <div class="chat-item__avatar">
-          <div class="avatar">{{ getInitials(chat.user.name) }}</div>
-          <div class="status" :class="{ 'status--online': chat.isOnline }"></div>
+          <div class="avatar">
+            {{ getInitials(chat.user.name) }}
+          </div>
+          <div 
+            class="status" 
+            :class="{ 'status--online': chat.isOnline }"
+          />
         </div>
         <div class="chat-item__content">
           <div class="chat-item__header">
             <span class="chat-item__name">{{ chat.user.name }}</span>
-            <span v-if="lastMessage(chat)" class="chat-item__time">
+            <span 
+              v-if="lastMessage(chat)"
+              class="chat-item__time"
+            >
               {{ formatTime(lastMessage(chat)!.timestamp) }}
             </span>
           </div>
           <div class="chat-item__message">
             <span class="chat-item__text">{{ lastMessageText(chat) }}</span>
-            <span v-if="chat.unreadCount > 0" class="chat-item__badge">
+            <span 
+              v-if="chat.unreadCount > 0" 
+              class="chat-item__badge"
+            >
               {{ chat.unreadCount }}
             </span>
           </div>

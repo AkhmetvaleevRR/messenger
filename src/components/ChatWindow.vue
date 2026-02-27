@@ -1,14 +1,22 @@
 <template>
   <div class="chat-window">
-    <div v-if="!chat" class="chat-window__empty">
+    <div 
+      v-if="!chat" 
+      class="chat-window__empty"
+    >
       <p>Выберите чат для начала общения</p>
     </div>
     <template v-else>
       <div class="chat-window__header">
         <div class="chat-header">
           <div class="chat-header__avatar">
-            <div class="avatar">{{ getInitials(chat.user.name) }}</div>
-            <div class="status" :class="{ 'status--online': chat.isOnline }"></div>
+            <div class="avatar">
+              {{ getInitials(chat.user.name) }}
+            </div>
+            <div 
+              class="status" 
+              :class="{ 'status--online': chat.isOnline }"
+            />
           </div>
           <div class="chat-header__info">
             <h3>{{ chat.user.name }}</h3>
@@ -18,7 +26,10 @@
           </div>
         </div>
       </div>
-      <div class="chat-window__messages" ref="messagesContainer">
+      <div 
+        ref="messagesContainer"
+        class="chat-window__messages" 
+      >
         <div
           v-for="(message, index) in chat.messages"
           :key="message.id"
@@ -35,8 +46,13 @@
             :class="{ 'message--own': message.isOwn }"
           >
             <div class="message__content">
-              <div class="message__text" v-html="formatText(message.text)"></div>
-              <div class="message__time">{{ formatTime(message.timestamp) }}</div>
+              <div 
+                class="message__text" 
+                v-html="formatText(message.text)" 
+              />
+              <div class="message__time">
+                {{ formatTime(message.timestamp) }}
+              </div>
             </div>
           </div>
         </div>
